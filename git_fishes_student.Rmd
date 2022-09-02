@@ -132,21 +132,11 @@ Second, drop out irrelevant columns and check that there are no spelling issues 
 # Drop irrelevant columns
 data[ , -which(names(data) %in% c("comment","loc"))]
 # Check spelling in species and treatment but also generate a summary table
-# if there is any spelling issue, may have a species or treatment only have one value
-species <- unique(data$species) 
-table(data$species)
-treatment <- unique(data$treatment) 
-table(data$treatment)
-
-#summary table for 1) the mean, 2) the standard error and 3) the sample sizes 
-data %>%
+summary_table <-data %>%
   group_by(species, treatment) %>%
-  summarise(sl - mean(sl), sd=sd(sl), n=n(), se = sd/sqrt(n))
-
-
-
-  
+  summarise(sl= mean(sl), sd=sd(sl), n=n(), se = sd/sqrt(n))
 # Use flextable to render the summary table in a tidy format
+flextable(summary_table)
 
 ```
 

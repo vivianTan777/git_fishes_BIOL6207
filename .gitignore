@@ -1,2 +1,6 @@
-output/figures/
+output/data/
+.Rhistory
+.Rproj.user
+.DS_Store
+git_fishes_BIOL6207/.DS_Store
 .DS_Store
